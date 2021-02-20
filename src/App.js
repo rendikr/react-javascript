@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="Parent-box">
       <ProductPhoto/>
-      <ProductInfo category="Canvas Shoes" title="Chuck" price="1300000" info="One of the most recognizable shoes in the world."/>
+      <ProductInfo category="Canvas Shoes" title="Chuck" price="1300000" info="One of the most recognizable shoes in the world." isDiscount="yes"/>
     </div>
   );
 }
@@ -19,8 +19,26 @@ function ProductPhoto() {
   );
 }
 
+function CheckDiscount(props) {
+  const { isDiscount } = props;
+
+  if (isDiscount == "yes") {
+    return (
+      <p>30% Discount</p>
+    );
+  } else if (isDiscount == "coming") {
+    return (
+      <p>No Discount yet..</p>
+    );
+  } else {
+    return (
+      <p>No Discount</p>
+    );
+  }
+}
+
 function ProductInfo(props) {
-  const { category, title, price, info } = props;
+  const { category, title, price, info, isDiscount } = props;
 
   return (
     <div>
@@ -28,6 +46,7 @@ function ProductInfo(props) {
         <p className="Category">{category}</p>
         <h1 className="Title">{title}</h1>
         <p className="Price">IDR {price}</p>
+        <CheckDiscount isDiscount={isDiscount}/>
         <p className="Info">
           {info}
         </p>
