@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.css';
 import Reviews from './Reviews';
+import PropTypes from 'prop-types';
 
 function App() {
 
   return (
     <div className="Parent-box">
       <ProductPhoto/>
-      <ProductInfo category="Canvas Shoes" title="Chuck" price="1300000" info="One of the most recognizable shoes in the world." isDiscount="yes"/>
+      <ProductInfo category="Canvas Shoes" title="Chuck" price="1300000" info="One of the most recognizable shoes in the world." isDiscount="yes" discount={10}/>
 
       <Reviews/>
     </div>
@@ -24,11 +25,11 @@ function ProductPhoto() {
 }
 
 function CheckDiscount(props) {
-  const { isDiscount } = props;
+  const { isDiscount, discount } = props;
 
   if (isDiscount == "yes") {
     return (
-      <p>30% Discount</p>
+      <p>{discount}% Discount</p>
     );
   } else if (isDiscount == "coming") {
     return (
@@ -42,7 +43,7 @@ function CheckDiscount(props) {
 }
 
 function ProductInfo(props) {
-  const { category, title, price, info, isDiscount } = props;
+  const { category, title, price, info, isDiscount, discount } = props;
   const benefits = ["waterproof", "limited edition", "well known"];
   const listBenefits = benefits.map((benefit) =>
     <li>{benefit}</li>
@@ -54,7 +55,7 @@ function ProductInfo(props) {
         <p className="Category">{category}</p>
         <h1 className="Title">{title}</h1>
         <p className="Price">IDR {price}</p>
-        <CheckDiscount isDiscount={isDiscount}/>
+        <CheckDiscount isDiscount={isDiscount} discount={discount}/>
         <p className="Info">
           {info}
         </p>
@@ -67,6 +68,10 @@ function ProductInfo(props) {
 
 function AddToCart(title, price, e) {
   console.log("Adding product to cart..." + title + " " + price);
+}
+
+CheckDiscount.propTypes = {
+  discount: PropTypes.number
 }
 
 export default App;
