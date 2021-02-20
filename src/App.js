@@ -3,7 +3,10 @@ import './App.css';
 function App() {
 
   return (
-    <div className="Parent-box"></div>
+    <div className="Parent-box">
+      <ProductPhoto/>
+      <ProductInfo category="Canvas Shoes" title="Chuck" price="1300000" info="One of the most recognizable shoes in the world."/>
+    </div>
   );
 }
 
@@ -16,11 +19,8 @@ function ProductPhoto() {
   );
 }
 
-function ProductInfo() {
-  const category = "Canvas Shoes";
-  const title = "Chuck"
-  const price = 1300000;
-  const info = "One of the most recognizable shoes in the world."
+function ProductInfo(props) {
+  const { category, title, price, info } = props;
 
   return (
     <div>
