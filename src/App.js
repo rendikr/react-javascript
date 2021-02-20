@@ -39,6 +39,10 @@ function CheckDiscount(props) {
 
 function ProductInfo(props) {
   const { category, title, price, info, isDiscount } = props;
+  const benefits = ["waterproof", "limited edition", "well known"];
+  const listBenefits = benefits.map((benefit) =>
+    <li>{benefit}</li>
+  );
 
   return (
     <div>
@@ -50,6 +54,7 @@ function ProductInfo(props) {
         <p className="Info">
           {info}
         </p>
+        <ul>{listBenefits}</ul>
         <a onClick={(e) => AddToCart(title, price, e)} href="#">Add to Cart</a>
       </div>
     </div>
